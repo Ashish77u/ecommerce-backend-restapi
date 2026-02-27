@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - E-Commerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        .product-card {
+            transition: transform 0.2s;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Categories</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a th:href="@{/products}"
+                       class="list-group-item list-group-item-action"
+                       th:classappend="${selectedCategory == null ? 'active' : ''}">
+                        All Products
+                    </a>
+                    <a th:each="category : ${categories}"
+                       th:href="@{/products(categoryId=${category.id})}"
+                       class="list-group-item list-group-item-action"
+                       th:classappend="${selectedCategory == category.id ? 'active' : ''}"
+                       th:text="${category.name}">
+                        Category Name
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Products</h2>
+                <form th:action="@{/products}" method="get" class="d-flex">
+                    <input type="search" name="search" class="form-control me-2"
+                           placeholder="Search products..." th:value="${searchQuery}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" th:each="product : ${products.content}">
+                    <div class="card product-card">
+                        <div class="product-image d-flex align-items-center justify-content-center">
+                            <i class="bi bi-box text-secondary" style="font-size: 4rem;"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                            <p class="card-text text-muted small" th:text="${#strings.abbreviate(product.description, 60)}">Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0 text-primary" th:text="'$' + ${product.price}">$0.00</span>
+                                <span class="badge" th:classappend="${product.inStock ? 'bg-success' : 'bg-danger'}"
+                                      th:text="${product.inStock ? 'In Stock' : 'Out of Stock'}">In Stock</span>
+                            </div>
+                            <a th:href="@{/products/{id}(id=${product.id})}" class="btn btn-primary w-100 mt-3">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav th:if="${products.totalPages > 1}" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/products(page=${currentPage - 1}, categoryId=${selectedCategory}, search=${searchQuery})}">
+                            Previous
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, products.totalPages - 1)}"
+                        th:classappend="${i == currentPage ? 'active' : ''}">
+                        <a class="page-link" th:href="@{/products(page=${i}, categoryId=${selectedCategory}, search=${searchQuery})}"
+                           th:text="${i + 1}">1</a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${currentPage == products.totalPages - 1 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/products(page=${currentPage + 1}, categoryId=${selectedCategory}, search=${searchQuery})}">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
