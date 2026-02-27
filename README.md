@@ -201,11 +201,12 @@ Key entities:
 
 ## 🎦 Screenshort 
 
-<img width="1917" height="762" alt="auth 1" src="https://github.com/user-attachments/assets/dafd5d99-44b6-401a-a48d-8c780634ced6" />
-<img width="1918" height="567" alt="category 2" src="https://github.com/user-attachments/assets/95601966-b813-43aa-9895-b54e0936ae8b" />
-<img width="1918" height="552" alt="product 3" src="https://github.com/user-attachments/assets/f34f89e1-b1b0-4559-b663-5eaaf563e3d5" />
-<img width="1918" height="287" alt="payment 5" src="https://github.com/user-attachments/assets/a04d62c4-5b3c-4363-a926-153571557d1f" />
-<img width="1918" height="556" alt="order 4" src="https://github.com/user-attachments/assets/f47fda03-d478-4049-9b3e-00b3b9535ac3" />
+<img width="1917" height="762" alt="auth 1" src="https://github.com/user-attachments/assets/5b7741f8-a34f-42b5-aee4-61afc58060f8" />
+<img width="1918" height="567" alt="category 2" src="https://github.com/user-attachments/assets/a461b339-a782-4eb8-8825-3f2ff11a4db0" />
+<img width="1918" height="552" alt="product 3" src="https://github.com/user-attachments/assets/31fe4665-e00d-4d95-bc54-5868c95d5d35" />
+<img width="1918" height="287" alt="payment 5" src="https://github.com/user-attachments/assets/250db122-15be-4310-8a14-55848ecbe9ce" />
+<img width="1918" height="556" alt="order 4" src="https://github.com/user-attachments/assets/a691797a-b3db-4564-ab84-503be5c3505e" />
+
 
 
 ## 👨‍💻 Author
